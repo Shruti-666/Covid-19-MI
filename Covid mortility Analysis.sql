@@ -34,4 +34,8 @@ where location= 'India' order by 1,2
 select location, population , max(total_cases) as HighestInfectionCount , max((total_cases/population))*100 as AffectedPopulationPercentages
 from Covid19_Mortality_Insight..[Covid Death] group by location, population order by AffectedPopulationPercentages desc
 
+
 --Countries with Highest Motality per Population
+select location, population, max(total_deaths) as HighestMortalityCount, max((total_deaths/population)*100) as HighestMortalityPercentage
+from Covid19_Mortality_Insight..[Covid Death]
+group by location, population order by HighestMortalityPercentage desc
