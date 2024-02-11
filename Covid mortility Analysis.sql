@@ -36,6 +36,39 @@ from Covid19_Mortality_Insight..[Covid Death] group by location, population orde
 
 
 --Countries with Highest Motality per Population
+select location, max(total_deaths) as HighestMortalityCount
+from Covid19_Mortality_Insight..[Covid Death] 
+where continent is not null
+group by location order by HighestMortalityCount desc
+
 select location, population, max(total_deaths) as HighestMortalityCount, max((total_deaths/population)*100) as HighestMortalityPercentage
 from Covid19_Mortality_Insight..[Covid Death]
+where continent is not null
 group by location, population order by HighestMortalityPercentage desc
+
+
+--Continent Analysis
+select continent, max(total_deaths) as HighestMortalityCount
+from Covid19_Mortality_Insight..[Covid Death] 
+where continent is not null
+group by continent order by HighestMortalityCount desc
+
+select continent, max(total_deaths) as HighestMortalityCount, max((total_deaths/population)*100) as HighestMortalityPercentage
+from Covid19_Mortality_Insight..[Covid Death]
+where continent is not null
+group by continent order by HighestMortalityPercentage desc
+
+--Showing continents with highest deathCount
+select continent, max(total_deaths) as HighestMortalityCount
+from Covid19_Mortality_Insight..[Covid Death]
+where continent is not null
+group by continent order by HighestMortalityCount desc
+
+--Total Death allover the world
+select sum(total_deaths) as TotalMortalityCount
+from Covid19_Mortality_Insight..[Covid Death]
+where continent is not null
+
+select sum(total_deaths) as TotalMortalityCount
+from Covid19_Mortality_Insight..[Covid Death]
+where location='India' and continent is not null
