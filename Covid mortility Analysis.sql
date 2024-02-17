@@ -67,8 +67,19 @@ group by continent order by HighestMortalityCount desc
 --Total Death allover the world
 select sum(total_deaths) as TotalMortalityCount
 from Covid19_Mortality_Insight..[Covid Death]
-where continent is not null
+where continent is not null 
 
 select sum(total_deaths) as TotalMortalityCount
 from Covid19_Mortality_Insight..[Covid Death]
 where location='India' and continent is not null
+
+select date, sum(new_cases) as NewCases, sum(new_deaths) as NewDeath 
+from Covid19_Mortality_Insight..[Covid Death] 
+where continent is not null
+group by date order by 1,2
+
+--Vaccination DB
+select cd.continent, cd.location, cd.date, cd.population
+from Covid19_Mortality_Insight..[Covid Death] cd join
+Covid19_Mortality_Insight..[Covid Vaccination] cv on
+cd.location=cv.location and cd.date=cv.date
