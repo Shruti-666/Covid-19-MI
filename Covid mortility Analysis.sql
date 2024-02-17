@@ -79,7 +79,8 @@ where continent is not null
 group by date order by 1,2
 
 --Vaccination DB
-select cd.continent, cd.location, cd.date, cd.population
-from Covid19_Mortality_Insight..[Covid Death] cd join
+select cd.continent, cd.location, cd.date, cd.population, cv.new_vaccinations
+from Covid19_Mortality_Insight..[Covid Death] cd Join
 Covid19_Mortality_Insight..[Covid Vaccination] cv on
 cd.location=cv.location and cd.date=cv.date
+where cd.continent is not null order by 2,3
